@@ -1,0 +1,66 @@
+{
+  "strategy_name": "FTT_DWT_FBB_FUTURES",
+  "params": {
+    "roi": {
+      "0": 0.1
+    },
+    "stoploss": {
+      "stoploss": -0.99
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 10
+    },
+    "buy": {
+      "buy_bb_gain": 0.27,
+      "buy_fisher_wr": -0.81,
+      "buy_force_fisher_wr": -0.85,
+      "entry_fft_dev": -2.3,
+      "entry_fft_diff": 0.4,
+      "entry_long_dwt_diff": 4.8,
+      "entry_short_dwt_diff": -0.4,
+      "entry_trend_type": "candle"
+    },
+    "sell": {
+      "cexit_long_endtrend_respect_roi": true,
+      "cexit_long_pullback": false,
+      "cexit_long_pullback_amount": 0.006,
+      "cexit_long_pullback_respect_roi": true,
+      "cexit_long_roi_end": 0.001,
+      "cexit_long_roi_start": 0.022,
+      "cexit_long_roi_time": 1180,
+      "cexit_long_roi_type": "static",
+      "cexit_long_trend_type": "rmi",
+      "cexit_short_endtrend_respect_roi": false,
+      "cexit_short_pullback": true,
+      "cexit_short_pullback_amount": 0.023,
+      "cexit_short_pullback_respect_roi": false,
+      "cexit_short_roi_end": 0.009,
+      "cexit_short_roi_start": 0.032,
+      "cexit_short_roi_time": 1161,
+      "cexit_short_roi_type": "decay",
+      "cexit_short_trend_type": "rmi",
+      "cstop_bail_how": "none",
+      "cstop_bail_roc": -1.637,
+      "cstop_bail_time": 1398,
+      "cstop_bail_time_trend": false,
+      "cstop_loss_threshold": -0.012,
+      "cstop_max_stoploss": -0.208,
+      "exit_fft_dev": 0.9,
+      "exit_fft_diff": -1.1,
+      "exit_long_dwt_diff": -4.5,
+      "exit_short_dwt_diff": 3.3,
+      "sell_bb_gain": 1.3,
+      "sell_fisher_wr": 0.85,
+      "sell_force_fisher_wr": 0.96
+    },
+    "protection": {}
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-09-19 23:32:02.786143+00:00"
+}
