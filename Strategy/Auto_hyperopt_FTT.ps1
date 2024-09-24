@@ -1,72 +1,72 @@
-# ÉèÖÃ.batÎÄ¼şºÍ.cfgÎÄ¼şµÄÂ·¾¶
-$batFilePath1 = "D:\WORK\Trading\freqtrade-2024.8\03.hyperopt_FBB_FTT_DWT_LongShort.bat"
-$batFilePath2 = "D:\WORK\Trading\freqtrade-2024.8\03.hyperopt_FBB_FTT_DWT_LongShort_sell.bat"
-$cfgFilePath = "D:\WORK\Trading\freqtrade-2024.8\user_data\strategies\FBB_FTT_DWT_LongShort.json"
-$downloadConfigBatPath = "D:\WORK\Trading\freqtrade-2024.8\01-bÏÂÔØÖ¸¶¨configÊı¾İ.bat"
+# è®¾ç½®.batæ–‡ä»¶å’Œ.cfgæ–‡ä»¶çš„è·¯å¾„
+$batFilePath1 = "  "
+$batFilePath2 = "  "
+$cfgFilePath = "  "
+$downloadConfigBatPath = "  "
 
-# ÉèÖÃÊ±¼ä¼ä¸ô
-$checkInterval = 600  # 10·ÖÖÓ£¬µ¥Î»ÎªÃë
+# è®¾ç½®æ—¶é—´é—´éš”
+$checkInterval = 600  # 10åˆ†é’Ÿï¼Œå•ä½ä¸ºç§’
 
-# ¶¨ÒåÒ»¸öÑ­»·£¬Ã¿ÌìÖ´ĞĞÒ»´Î
+# å®šä¹‰ä¸€ä¸ªå¾ªç¯ï¼Œæ¯å¤©æ‰§è¡Œä¸€æ¬¡
 while ($true) {
-    # »ñÈ¡µ±Ç°Ê±¼äºÍÏÂ´ÎÖ´ĞĞÊ±¼ä£¨ÉèÖÃÎªµ±ÌìµÄÁè³¿2µã£©
+    # è·å–å½“å‰æ—¶é—´å’Œä¸‹æ¬¡æ‰§è¡Œæ—¶é—´ï¼ˆè®¾ç½®ä¸ºå½“å¤©çš„å‡Œæ™¨2ç‚¹ï¼‰
     $now = Get-Date
     $nextRunTime = (Get-Date -Hour 1 -Minute 0 -Second 0)
 
-    # Èç¹ûµ±Ç°Ê±¼äÒÑ¾­³¬¹ıÁË½ñÌìµÄÁè³¿2µã£¬ÔòÉèÖÃÎªÃ÷ÌìµÄÁè³¿2µã
+    # å¦‚æœå½“å‰æ—¶é—´å·²ç»è¶…è¿‡äº†ä»Šå¤©çš„å‡Œæ™¨2ç‚¹ï¼Œåˆ™è®¾ç½®ä¸ºæ˜å¤©çš„å‡Œæ™¨2ç‚¹
     if ($now -ge $nextRunTime) {
         $nextRunTime = $nextRunTime.AddDays(1)
     }
 
-    # ¼ÆËãÊ£ÓàÊ±¼ä£¨Ãë£©
+    # è®¡ç®—å‰©ä½™æ—¶é—´ï¼ˆç§’ï¼‰
     $timeRemaining = ($nextRunTime - $now).TotalSeconds
 
-    # Ã¿10·ÖÖÓÌáÊ¾Ò»´Î£¬Ö±µ½µ½´ïÏÂ´ÎÖ´ĞĞÊ±¼ä
+    # æ¯10åˆ†é’Ÿæç¤ºä¸€æ¬¡ï¼Œç›´åˆ°åˆ°è¾¾ä¸‹æ¬¡æ‰§è¡Œæ—¶é—´
     while ($timeRemaining -gt 0) {
         $hoursRemaining = [math]::Floor($timeRemaining / 3600)
         $minutesRemaining = [math]::Floor(($timeRemaining % 3600) / 60)
-        Write-Output "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] ¾àÀëÏÂ´ÎÖ´ĞĞhyperopt»¹ÓĞ $hoursRemaining Ğ¡Ê± $minutesRemaining ·ÖÖÓ"
+        Write-Output "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] è·ç¦»ä¸‹æ¬¡æ‰§è¡Œhyperoptè¿˜æœ‰ $hoursRemaining å°æ—¶ $minutesRemaining åˆ†é’Ÿ"
         Start-Sleep -Seconds $checkInterval
         $timeRemaining -= $checkInterval
     }
 
-    # »ñÈ¡µ±ÌìºÍÇ°4ÌìµÄÈÕÆÚ
+    # è·å–å½“å¤©å’Œå‰4å¤©çš„æ—¥æœŸ
     $today = Get-Date -Format "yyyyMMdd"
     $pastDays = (Get-Date).AddDays(-4).ToString("yyyyMMdd")
     $newTimerange = "--timerange=$pastDays-$today"
-    # Êä³öĞŞ¸ÄºóµÄÊ±¼ä·¶Î§
-    Write-Output "ĞŞ¸ÄµÄÊ±¼ä·¶Î§Îª: $newTimerange"
+    # è¾“å‡ºä¿®æ”¹åçš„æ—¶é—´èŒƒå›´
+    Write-Output "ä¿®æ”¹çš„æ—¶é—´èŒƒå›´ä¸º: $newTimerange"
 
-    # ĞŞ¸ÄµÚÒ»¸ö.batÎÄ¼şµÄtimerange²ÎÊı
+    # ä¿®æ”¹ç¬¬ä¸€ä¸ª.batæ–‡ä»¶çš„timerangeå‚æ•°
     $batFileContent1 = Get-Content $batFilePath1
     $updatedContent1 = $batFileContent1 -replace '--timerange=\d{8}-\d{8}', $newTimerange
     Set-Content $batFilePath1 $updatedContent1
     Write-Output "Updated first .bat file with new timerange: $newTimerange at $(Get-Date)"
 
-    # ĞŞ¸ÄµÚ¶ş¸ö.batÎÄ¼şµÄtimerange²ÎÊı
+    # ä¿®æ”¹ç¬¬äºŒä¸ª.batæ–‡ä»¶çš„timerangeå‚æ•°
     $batFileContent2 = Get-Content $batFilePath2
     $updatedContent2 = $batFileContent2 -replace '--timerange=\d{8}-\d{8}', $newTimerange
     Set-Content $batFilePath2 $updatedContent2
     Write-Output "Updated second .bat file with new timerange: $newTimerange at $(Get-Date)"
 
-    # ÀäÈ´10Ãë
+    # å†·å´10ç§’
     Start-Sleep -Seconds 10
 
-    # Ö´ĞĞÏÂÔØÅäÖÃÊı¾İµÄ .bat ÎÄ¼ş
+    # æ‰§è¡Œä¸‹è½½é…ç½®æ•°æ®çš„ .bat æ–‡ä»¶
     Start-Process $downloadConfigBatPath -Wait
-    Write-Output "ÏÂÔØÅäÖÃÊı¾İµÄ .bat ÎÄ¼şÒÑÖ´ĞĞÍê³É at $(Get-Date)"
+    Write-Output "ä¸‹è½½é…ç½®æ•°æ®çš„ .bat æ–‡ä»¶å·²æ‰§è¡Œå®Œæˆ at $(Get-Date)"
 
-    # Ö´ĞĞµÚÒ»¸ö.batÎÄ¼ş
+    # æ‰§è¡Œç¬¬ä¸€ä¸ª.batæ–‡ä»¶
     Start-Process $batFilePath1 -Wait
-    Write-Output "µÚÒ»¸ö .bat ÎÄ¼şÒÑÖ´ĞĞÍê³É at $(Get-Date)"
+    Write-Output "ç¬¬ä¸€ä¸ª .bat æ–‡ä»¶å·²æ‰§è¡Œå®Œæˆ at $(Get-Date)"
 
-    # ÀäÈ´10Ãë
+    # å†·å´10ç§’
     Start-Sleep -Seconds 10
 
-    # Ö´ĞĞµÚ¶ş¸ö.batÎÄ¼ş
+    # æ‰§è¡Œç¬¬äºŒä¸ª.batæ–‡ä»¶
     Start-Process $batFilePath2 -Wait
-    Write-Output "µÚ¶ş¸ö .bat ÎÄ¼şÒÑÖ´ĞĞÍê³Éat $(Get-Date)"
+    Write-Output "ç¬¬äºŒä¸ª .bat æ–‡ä»¶å·²æ‰§è¡Œå®Œæˆat $(Get-Date)"
 
-    # ¼ÆËãµ½ÏÂ´ÎÖ´ĞĞµÄÊ±¼ä£¬²¢ĞİÃß
+    # è®¡ç®—åˆ°ä¸‹æ¬¡æ‰§è¡Œçš„æ—¶é—´ï¼Œå¹¶ä¼‘çœ 
     $timeRemaining = ($nextRunTime.AddDays(1) - (Get-Date)).TotalSeconds
 }
